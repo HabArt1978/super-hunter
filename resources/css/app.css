@@ -15,8 +15,7 @@
         "Liberation Mono", "Courier New", monospace;
 
     /* colors */
-    --color-gray-light: oklch(92.8% 0.006 264.531);
-    --color-gray-medium: oklch(44.6% 0.03 256.802);
-    --color-gray-dark: oklch(20.8% 0.042 265.755);
-    --color-gray-darker: oklch(13% 0.028 261.692);
+    --color-gray-light: oklch(87.2% 0.01 258.338);
+    --color-gray-dark: oklch(27.8% 0.033 256.848);
+    --color-gray-darker: oklch(20.8% 0.042 265.755);
 }
