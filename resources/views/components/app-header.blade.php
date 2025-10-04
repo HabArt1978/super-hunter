@@ -1,5 +1,4 @@
-<header
-        class='static flex justify-between px-6 items-center h-18 border-b-1 border-gray-dark shadow-xl'>
+<header class='static  flex justify-between px-6 items-center h-18 bg-gray-darker/50 shadow-xl'>
     <a href="#" class='absolute top-3 left-6'>
         <div class='flex'>
             <div class='grid grid-cols-2 size-12 p-2'>
@@ -17,33 +16,27 @@
         </div>
     </a>
 
-    <ul class="flex mx-auto gap-10">
+    <ul class="flex mx-auto gap-10 items-center">
         <li>
-            <x-ui.link-button href='#'
-                              color="orange"
-                              variant="text">вакансии</x-ui.link-button>
+            <x-ui.nav-link href='/' :active="request()->is('/')">домашняя</x-ui.nav-link>
         </li>
         <li>
-            <x-ui.link-button href='#'
-                              color="orange"
-                              variant="text">карьера</x-ui.link-button>
+            <x-ui.nav-link href='/jobs' :active="request()->is('jobs')">вакансии</x-ui.nav-link>
         </li>
         <li>
-            <x-ui.link-button href='#'
-                              color="orange"
-                              variant="text">зарплаты</x-ui.link-button>
+            <x-ui.nav-link href='/career' :active="request()->is('career')">карьера</x-ui.nav-link>
         </li>
         <li>
-            <x-ui.link-button href='#'
-                              color="orange"
-                              variant="text">компании</x-ui.link-button>
+            <x-ui.nav-link href='/salaries' :active="request()->is('salaries')">зарплаты</x-ui.nav-link>
+
+        </li>
+        <li>
+            <x-ui.nav-link href='/company' :active="request()->is('company')">компании</x-ui.nav-link>
         </li>
     </ul>
 
-    <div class='absolute top-5 right-8'>
-        <x-ui.link-button type="link"
-                          variant="contained"
-                          color="blue">
+    <div class='absolute top-6 right-8'>
+        <x-ui.link-button>
             разместить вакансию
         </x-ui.link-button>
     </div>

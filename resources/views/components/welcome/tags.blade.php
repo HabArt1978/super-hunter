@@ -2,11 +2,15 @@
     <x-slot:section_header>Теги вакансий</x-slot:section_header>
 
     <x-slot:section_content>
-
-        <div class="flex flex-wrap gap-4 justify-center">
-            @for ($i = 0; $i < 50; $i++)
-                <x-ui.link-button variant="outlined">TAG</x-ui.link-button>
+        <ul class="flex flex-wrap gap-x-4 gap-y-6 justify-between w-fit">
+            @for ($j = 0; $j < 55; $j++)
+                <li>
+                    <x-ui.link-button variant="outlined">
+                        tag
+                    </x-ui.link-button>
+                </li>
             @endfor
-        </div>
+            <div class='flex-1'></div>
+        </ul>
     </x-slot:section_content>
 </x-welcome.section-container>

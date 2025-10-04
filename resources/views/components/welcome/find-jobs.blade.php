@@ -3,7 +3,7 @@
     <x-slot:section_header>Поиск вакансии</x-slot:section_header>
 
     <x-slot:section_content>
-        <div class="grid gap-4">
+        <ul class="grid gap-4">
             @for ($i = 0; $i < 3; $i++)
                 <x-ui.job-card-wide>
 
@@ -12,9 +12,13 @@
                     <x-slot:card_description>Полный рабочий день — 150 000₽</x-slot:card_description>
 
                     <x-slot:tag_listings>
-                        <li><x-ui.link-button variant="outlined">Tag</x-ui.link-button></li>
-                        <li><x-ui.link-button variant="outlined">Tag</x-ui.link-button></li>
-                        <li><x-ui.link-button variant="outlined">Tag</x-ui.link-button></li>
+                        @for ($j = 0; $j < 3; $j++)
+                            <li>
+                                <x-ui.link-button variant="outlined" size='small'>
+                                    Tag
+                                </x-ui.link-button>
+                            </li>
+                        @endfor
                     </x-slot:tag_listings>
 
                     <x-slot:company_logo>
@@ -28,7 +32,7 @@
 
                 </x-ui.job-card-wide>
             @endfor
-        </div>
+        </ul>
     </x-slot:section_content>
 
 </x-welcome.section-container>
