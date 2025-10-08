@@ -5,6 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $title
+ * @property string $salary
+ * @property string $location
+ * @property string $schedule
+ * @property string $url
+ * @property boolean $featured
+ */
 class Job extends Model
 {
     /** @use HasFactory<\Database\Factories\JobFactory> */
@@ -43,4 +51,9 @@ class Job extends Model
         'url',
         'featured',
     ];
+
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class);
+    }
 }

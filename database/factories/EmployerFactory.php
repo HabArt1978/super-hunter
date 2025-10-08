@@ -21,6 +21,7 @@ class EmployerFactory extends Factory
         $seed = fake()->unique()->numberBetween(1, 10000);
 
         return [
+            'user_id' => new UserFactory,
             'name' => fake()->company(),
             'logo' => "https://picsum.photos/seed/{$seed}/90/90",
         ];
