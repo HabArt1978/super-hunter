@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use App\Library\JobTagEnum;
+use Database\Factories\JobFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property string $title
@@ -16,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Job extends Model
 {
-    /** @use HasFactory<\Database\Factories\JobFactory> */
+    /** @use HasFactory<JobFactory> */
     use HasFactory;
 
     public const SALARY_RANGES = [
@@ -53,12 +55,12 @@ class Job extends Model
         'featured',
     ];
 
-    public function employer()
+    public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);
     }
 
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }

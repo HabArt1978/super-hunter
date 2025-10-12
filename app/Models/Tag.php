@@ -2,13 +2,18 @@
 
 namespace App\Models;
 
+use Database\Factories\TagFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Tests\Library\JobTagEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $name
+ */
 class Tag extends Model
 {
-    /** @use HasFactory<\Database\Factories\TagFactory> */
+    /** @use HasFactory<TagFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -19,7 +24,7 @@ class Tag extends Model
         'name' => JobTagEnum::class,
     ];
 
-    public function jobs()
+    public function jobs(): BelongsToMany
     {
         return $this->belongsToMany(Job::class);
     }

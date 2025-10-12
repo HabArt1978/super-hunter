@@ -20,8 +20,8 @@ return new class extends Migration {
         });
 
         Schema::create('job_tag', function (Blueprint $table) {
-            $table->foreignIdFor(Job::class, 'job_id');
-            $table->foreignIdFor(Tag::class, 'tag_id');
+            $table->foreignIdFor(Job::class, 'job_id')->constrained();
+            $table->foreignIdFor(Tag::class, 'tag_id')->constrained();
             $table->timestamp('created_at')->default(DB::raw('now()'));
 
             $table->unique(['job_id', 'tag_id']);
