@@ -2,7 +2,7 @@
     <x-slot:section_header>Теги вакансий</x-slot:section_header>
 
     <x-slot:section_content>
-        <ul class="flex flex-wrap gap-x-4 gap-y-6 justify-between w-fit">
+        <ul class="flex flex-wrap gap-x-4 gap-y-6 justify-between w-fit mt-4">
             @for ($j = 0; $j < 55; $j++)
                 <li>
                     <x-ui.link-button variant="outlined">

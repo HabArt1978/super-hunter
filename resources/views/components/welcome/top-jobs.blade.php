@@ -1,15 +1,17 @@
+@props(['jobs'])
+
 <x-welcome.section-container>
 
     <x-slot:section_header>Лучшие вакансии</x-slot:section_header>
 
     <x-slot:section_content>
         <div class="grid grid-cols-3 gap-4">
-            @for ($i = 0; $i < 3; $i++)
+            @foreach($jobs as $job)
                 <x-ui.job-card>
 
-                    <x-slot:card_header>Название компании</x-slot:card_header>
-                    <x-slot:card_title>Разработчик Laravel</x-slot:card_title>
-                    <x-slot:card_description>Полный рабочий день — 150 000₽</x-slot:card_description>
+                    <x-slot:card_header>{{$job->employer->name}}</x-slot:card_header>
+                    <x-slot:card_title>{{$job->title}}</x-slot:card_title>
+                    <x-slot:card_description>{{$job->schedule}} — {{$job->salary}}</x-slot:card_description>
 
                     <x-slot:tag_listings>
                         @for ($j = 0; $j < 3; $j++)
@@ -22,7 +24,10 @@
                     </x-slot:tag_listings>
 
                     <x-slot:company_logo>
-                        <?php $seed = mt_rand(1, 10000); ?>
+                        @php
+                            $seed = mt_rand(1, 10000);
+                        @endphp
+
                         <img src='https://picsum.photos/seed/{{ $seed }}/90/90'
                              alt="Логотип компании"
                              width="90"
@@ -31,7 +36,13 @@
                     </x-slot:company_logo>
 
                 </x-ui.job-card>
-            @endfor
+            @endforeach
+
+
+        </div>
+
+        <div class="w-50 mx-auto">
+            {{$jobs->links()}}
         </div>
     </x-slot:section_content>
 

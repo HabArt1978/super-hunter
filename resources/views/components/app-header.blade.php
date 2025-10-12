@@ -1,5 +1,5 @@
 <header class='static  flex justify-between px-6 items-center h-18 bg-gray-darker/50 shadow-xl'>
-    <a href="#" class='absolute top-3 left-6'>
+    <a href="/" class='absolute top-3 left-6'>
         <div class='flex'>
             <div class='grid grid-cols-2 size-12 p-2'>
                 <div class='row-start-1 col-start-1 col-end-2 size-6 bg-orange-600'></div>
