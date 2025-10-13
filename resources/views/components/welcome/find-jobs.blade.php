@@ -1,9 +1,9 @@
-<x-welcome.section-container>
+<x-section-container>
 
     <x-slot:section_header>Поиск вакансии</x-slot:section_header>
 
     <x-slot:section_content>
-        <ul class="grid gap-4">
+        <ul class="grid gap-4 mt-2">
             @for ($i = 0; $i < 3; $i++)
                 <x-ui.job-card-wide>
 
@@ -35,4 +35,4 @@
         </ul>
     </x-slot:section_content>
 
-</x-welcome.section-container>
+</x-section-container>

@@ -1,14 +1,12 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [JobController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index']);
 
-Route::get('/jobs', function () {
-
-    return view('jobs', ['header_title' => 'Страница Вакансии']);
-});
+Route::get('/jobs', [JobController::class, 'index']);
 
 Route::get('/career', function () {
 
@@ -18,4 +16,9 @@ Route::get('/career', function () {
 Route::get('/salaries', function () {
 
     return view('salaries', ['header_title' => 'Страница Зарплаты']);
+});
+
+Route::get('/company', function () {
+
+    return view('company', ['header_title' => 'Страница Компании']);
 });

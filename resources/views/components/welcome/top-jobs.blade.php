@@ -1,11 +1,11 @@
 @props(['jobs'])
 
-<x-welcome.section-container>
+<x-section-container>
 
     <x-slot:section_header>Лучшие вакансии</x-slot:section_header>
 
     <x-slot:section_content>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-3 gap-4 mt-2">
             @foreach($jobs as $job)
                 <x-ui.job-card>
 
@@ -37,13 +37,11 @@
 
                 </x-ui.job-card>
             @endforeach
-
-
         </div>
 
-        <div class="w-50 mx-auto">
+        <div class="w-50 mx-auto mt-4">
             {{$jobs->links()}}
         </div>
     </x-slot:section_content>
 
-</x-welcome.section-container>
+</x-section-container>

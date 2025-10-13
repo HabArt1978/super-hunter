@@ -1,4 +1,4 @@
-<x-welcome.section-container>
+<x-section-container>
     <x-slot:section_header>Теги вакансий</x-slot:section_header>
 
     <x-slot:section_content>
@@ -13,4 +13,4 @@
             <div class='flex-1'></div>
         </ul>
     </x-slot:section_content>
-</x-welcome.section-container>
+</x-section-container>

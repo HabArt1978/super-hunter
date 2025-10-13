@@ -4,7 +4,7 @@
     $classes = Arr::toCssClasses([
         'uppercase rounded-lg transition-color duration-300 hover:cursor-pointer',
         'py-2 px-3' => $size === 'medium',
-        'py-1 px-2 text-sm' => $size === 'small',
+        'py-1 px-2 text-xs' => $size === 'small',
 
         'bg-blue-900 hover:bg-blue-900/50' => $variant === 'contained' && $color === 'blue',
         'bg-green-900 hover:bg-green-900/50' => $variant === 'contained' && $color === 'green',
@@ -22,6 +22,6 @@
     ]);
 @endphp
 
-<a {{ $attributes->merge(['class' => $classes]) }}'>
+<a {{ $attributes->merge(['class' => $classes]) }}>
     {{ $slot }}
 </a>

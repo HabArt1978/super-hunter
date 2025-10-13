@@ -10,7 +10,7 @@
     </section>
 
     <footer class='flex justify-between items-end'>
-        <ul class='flex gap-4'>
+        <ul class='flex gap-4 flex-wrap w-3/4'>
             {{ $tag_listings }}
         </ul>
 
