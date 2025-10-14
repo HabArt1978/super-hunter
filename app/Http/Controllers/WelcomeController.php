@@ -12,11 +12,11 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $fakeTopJobs = Job::with(['employer', 'tags'])->cursorPaginate(3);
+        $jobs = Job::with(['employer', 'tags'])->cursorPaginate(3);
 
         //        dd($fakeTopJobs);
 
-        return view('welcome', ['jobs' => $fakeTopJobs]);
+        return view('welcome', compact('jobs'));
     }
 
     /**

@@ -36,7 +36,7 @@
     </ul>
 
     <div class='absolute top-6 right-8'>
-        <x-ui.link-button>
+        <x-ui.link-button href='jobs/create'>
             разместить вакансию
         </x-ui.link-button>
     </div>

@@ -22,7 +22,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view('jobs.create');
     }
 
     /**
@@ -30,7 +30,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -38,9 +38,9 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-       $jobWithEmployer = Job::with(['employer', 'tags'])->find($job->id);
+       $job = Job::with(['employer', 'tags'])->find($job->id);
 
-       return view('jobs.show', ['job' => $jobWithEmployer]);
+       return view('jobs.show', compact('job'));
     }
 
     /**
