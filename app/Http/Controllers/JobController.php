@@ -38,7 +38,9 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        //
+       $jobWithEmployer = Job::with(['employer', 'tags'])->find($job->id);
+
+       return view('jobs.show', ['job' => $jobWithEmployer]);
     }
 
     /**

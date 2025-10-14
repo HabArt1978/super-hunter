@@ -18,20 +18,20 @@
 
     <ul class="flex mx-auto gap-10 items-center">
         <li>
-            <x-ui.nav-link href='/' :active="request()->is('/')">домашняя</x-ui.nav-link>
+            <x-ui.link-nav href='/' :active="request()->is('/')">домашняя</x-ui.link-nav>
         </li>
         <li>
-            <x-ui.nav-link href='/jobs' :active="request()->is('jobs')">вакансии</x-ui.nav-link>
+            <x-ui.link-nav href='/jobs' :active="request()->is('jobs')">вакансии</x-ui.link-nav>
         </li>
         <li>
-            <x-ui.nav-link href='/career' :active="request()->is('career')">карьера</x-ui.nav-link>
+            <x-ui.link-nav href='/career' :active="request()->is('career')">карьера</x-ui.link-nav>
         </li>
         <li>
-            <x-ui.nav-link href='/salaries' :active="request()->is('salaries')">зарплаты</x-ui.nav-link>
+            <x-ui.link-nav href='/salaries' :active="request()->is('salaries')">зарплаты</x-ui.link-nav>
 
         </li>
         <li>
-            <x-ui.nav-link href='/company' :active="request()->is('company')">компании</x-ui.nav-link>
+            <x-ui.link-nav href='/company' :active="request()->is('company')">компании</x-ui.link-nav>
         </li>
     </ul>
 

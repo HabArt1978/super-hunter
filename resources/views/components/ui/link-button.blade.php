@@ -6,7 +6,7 @@
         'py-2 px-3' => $size === 'medium',
         'py-1 px-2 text-xs' => $size === 'small',
 
-        'bg-blue-900 hover:bg-blue-900/50' => $variant === 'contained' && $color === 'blue',
+        'bg-blue-800 hover:bg-blue-800/60' => $variant === 'contained' && $color === 'blue',
         'bg-green-900 hover:bg-green-900/50' => $variant === 'contained' && $color === 'green',
         'bg-red-900 hover:bg-red-900/50' => $variant === 'contained' && $color === 'red',
         'bg-orange-700 hover:bg-orange-700/70' => $variant === 'contained' && $color === 'orange',

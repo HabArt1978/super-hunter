@@ -12,7 +12,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $fakeTopJobs = Job::with(['employer'])->cursorPaginate(3);
+        $fakeTopJobs = Job::with(['employer', 'tags'])->cursorPaginate(3);
 
         //        dd($fakeTopJobs);
 

@@ -7,7 +7,7 @@
 
     <div class='flex flex-col w-full ml-8'>
         <header class='flex justify-between'>
-            <h3>{{ $card_header }}</h3>
+            <h3 class="text-orange-400">{{ $card_header }}</h3>
 
             <div class='flex gap-4 text-sm'>
                 <div>последнее обновление</div>
