@@ -1,5 +1,3 @@
-<form action='/jobs' method="POST" class="mt-6 w-3/4 mx-auto">
-  @csrf
-
+<form {{$attributes->merge(['class' => 'mt-6 w-3/4 mx-auto'])}} >
   {{$slot}}
 </form>

@@ -20,7 +20,7 @@ Route::get('/company', function () {
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/jobs/create', [JobController::class, 'create']);
 Route::get('/jobs/{job}', [JobController::class, 'show']);
-//Route::post('/jobs', [JobController::class, 'store']);
+Route::post('/jobs', [JobController::class, 'store']);
 
 
 

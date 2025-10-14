@@ -21,7 +21,7 @@ class JobFactory extends Factory
             'employer_id' => new EmployerFactory,
             'title' => fake()->jobTitle(),
             'salary' => fake()->randomElement(Job::SALARY_RANGES),
-            'location' => fake()->locale(),
+            'location' => fake()->randomElement(['г.Саранск', 'г.Москва' , 'г.Санкт-Петербург' , 'г.Екатеринбург' , 'г.Владивосток']),
             'schedule' => fake()->randomElement(Job::SCHEDULE),
             'url' => fake()->url,
             'featured' => false

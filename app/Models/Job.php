@@ -53,6 +53,7 @@ class Job extends Model
         'schedule',
         'url',
         'featured',
+        'employer_id',
     ];
 
     public function employer(): BelongsTo

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class JobController extends Controller
 {
@@ -30,7 +32,19 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+        DB::transaction(function () use ($request) {
+            $validatedAttributes = $request->validate([
+                'job_title' => 'required|string|min:3|max:100',
+                'salary' => 'required|string|min:4|max:10',
+                'schedule' => 'required|string|max:255',
+                'location' => 'required|string|max:255',
+                'url' => 'required|url|max:500',
+            ]);
 
+            Job::create(['title' => $request->job_title, ...$validatedAttributes, 'employer_id' => 1]);
+        });
+
+        return redirect('/jobs');
     }
 
     /**
@@ -67,3 +81,5 @@ class JobController extends Controller
         //
     }
 }
+
+

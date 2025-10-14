@@ -1,5 +1,10 @@
-<div class="border-t-1 border-orange-500 mt-6">
-    <button {{$attributes->merge(['class' => 'mt-8 border-1 p-2'])}}>
-        {{$slot}}
-    </button>
-</div>
+@php
+    $classes = Arr::toCssClasses([
+        'uppercase rounded-lg my-8 transition-color duration-300 py-2 px-3 bg-blue-800 hover:bg-blue-800/60'
+    ])
+@endphp
+
+<button {{$attributes->merge(['class' => $classes])}}>
+    {{$slot}}
+</button>
+
