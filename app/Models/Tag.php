@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Database\Factories\TagFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Tests\Library\JobTagEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property string $name
@@ -20,12 +20,13 @@ class Tag extends Model
         'name'
     ];
 
-    protected $casts = [
-        'name' => JobTagEnum::class,
-    ];
-
     public function jobs(): BelongsToMany
     {
         return $this->belongsToMany(Job::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 }

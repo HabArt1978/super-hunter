@@ -6,7 +6,7 @@ use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Job>
+ * @extends Factory<Job>
  */
 class JobFactory extends Factory
 {
@@ -21,7 +21,9 @@ class JobFactory extends Factory
             'employer_id' => new EmployerFactory,
             'title' => fake()->jobTitle(),
             'salary' => fake()->randomElement(Job::SALARY_RANGES),
-            'location' => fake()->randomElement(['г.Саранск', 'г.Москва' , 'г.Санкт-Петербург' , 'г.Екатеринбург' , 'г.Владивосток']),
+            'location' => fake()->randomElement([
+                'г.Саранск', 'г.Москва', 'г.Санкт-Петербург', 'г.Екатеринбург', 'г.Владивосток'
+            ]),
             'schedule' => fake()->randomElement(Job::SCHEDULE),
             'url' => fake()->url,
             'featured' => false

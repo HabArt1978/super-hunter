@@ -15,18 +15,19 @@
 
                         <x-slot:tag_listings>
                             @foreach($job->tags as $tag)
-                               <x-job.tag>
-                                   {{$tag->name}}
-                               </x-job.tag>
+                                <x-job.tag>
+                                    {{$tag->name}}
+                                </x-job.tag>
                             @endforeach
                         </x-slot:tag_listings>
 
                         <x-slot:company_logo>
-                            <img src="{{$job->employer->logo}}"
-                                 alt="Логотип компании"
-                                 width="90"
-                                 height="90"
-                                 class="rounded-lg" />
+                            <img
+                                src="{{$job->employer->logo}}"
+                                alt="Логотип компании"
+                                width="90"
+                                height="90"
+                                class="rounded-lg" />
                         </x-slot:company_logo>
                     </x-job.card>
                 </x-ui.link-card>

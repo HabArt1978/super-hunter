@@ -4,7 +4,6 @@
 
         <x-slot:section_header>Вакансии</x-slot:section_header>
 
-
         <x-slot:section_content>
 
             <div class="my-10">
@@ -28,18 +27,18 @@
                             </x-slot:tag_listings>
 
                             <x-slot:company_logo>
-                                <img src="{{$job->employer->logo}}"
-                                     alt="Логотип компании"
-                                     width="90"
-                                     height="90"
-                                     class="rounded-lg" />
+                                <img
+                                    src="{{$job->employer->logo}}"
+                                    alt="Логотип компании"
+                                    width="90"
+                                    height="90"
+                                    class="rounded-lg" />
                             </x-slot:company_logo>
                         </x-job.card>
                     </x-ui.link-card>
 
                 @endforeach
             </div>
-
 
         </x-slot:section_content>
 

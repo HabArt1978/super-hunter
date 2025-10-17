@@ -1,5 +1,5 @@
 <article
-         class="flex max-w-full bg-slate-900 p-4 rounded-2xl border-2 border-transparent hover:border-blue-600 transition duration-300 group">
+    class="flex max-w-full bg-slate-900 p-4 rounded-2xl border-2 border-transparent hover:border-blue-600 transition duration-300 group">
 
     <div class='rounded-lg'>
         {{ $company_logo }}

@@ -14,9 +14,36 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::with(['employer', 'tags'])->orderBy('created_at', 'desc')->paginate(9);
+        $jobs = Job::with(['employer', 'tags'])
+                   ->orderBy('created_at', 'desc')
+                   ->paginate(9);
 
         return view('jobs.index', ['jobs' => $jobs]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @throws Throwable
+     */
+    public function store(Request $request)
+    {
+        DB::transaction(function() use ($request) {
+            $validatedAttributes = $request->validate([
+                'job_title' => 'required|string|min:3|max:100',
+                'salary' => 'required|string|min:4|max:10',
+                'schedule' => 'required|string|max:255',
+                'location' => 'required|string|max:255',
+                'url' => 'required|url|max:500',
+            ]);
+
+            Job::create([
+                'title' => $request->job_title,
+                ...$validatedAttributes,
+                'employer_id' => 1
+            ]);
+        });
+
+        return redirect('/jobs');
     }
 
     /**
@@ -28,33 +55,14 @@ class JobController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        DB::transaction(function () use ($request) {
-            $validatedAttributes = $request->validate([
-                'job_title' => 'required|string|min:3|max:100',
-                'salary' => 'required|string|min:4|max:10',
-                'schedule' => 'required|string|max:255',
-                'location' => 'required|string|max:255',
-                'url' => 'required|url|max:500',
-            ]);
-
-            Job::create(['title' => $request->job_title, ...$validatedAttributes, 'employer_id' => 1]);
-        });
-
-        return redirect('/jobs');
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(Job $job)
     {
-       $job = Job::with(['employer', 'tags'])->find($job->id);
+        $job = Job::with(['employer', 'tags'])
+                  ->find($job->id);
 
-       return view('jobs.show', compact('job'));
+        return view('jobs.show', compact('job'));
     }
 
     /**

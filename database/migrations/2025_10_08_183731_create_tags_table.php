@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Job;
 use App\Models\Tag;
 use Illuminate\Database\Migrations\Migration;
@@ -7,19 +8,21 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('tags', function(Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Category::class);
             $table->string('name');
             $table->timestamps();
         });
 
-        Schema::create('job_tag', function (Blueprint $table) {
+        Schema::create('job_tag', function(Blueprint $table) {
             $table->foreignIdFor(Job::class, 'job_id')->constrained();
             $table->foreignIdFor(Tag::class, 'tag_id')->constrained();
             $table->timestamp('created_at')->default(DB::raw('now()'));

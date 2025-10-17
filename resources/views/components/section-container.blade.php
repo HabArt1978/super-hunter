@@ -1,6 +1,5 @@
 @props(['type' => 'section'])
 
-
 <section class='tracking-wider'>
     <div @class([
        'py-10' => $type === 'page',

@@ -3,24 +3,30 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <link
+        rel="preconnect"
+        href="https://fonts.bunny.net">
+    <link
+        href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
+        rel="stylesheet" />
 
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class='bg-gray-dark min-h-screen text-gray-light'>
-    <x-app-header />
+<x-app-header />
 
-    <div class="container mx-auto">
-        {{ $slot }}
-    </div>
+<div class="container mx-auto">
+    {{ $slot }}
+</div>
 </body>
 
 </html>

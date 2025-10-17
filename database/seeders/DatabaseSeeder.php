@@ -6,9 +6,9 @@ use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Tag;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->has(Employer::factory(1)->has(Job::factory(3)->has(Tag::factory(3))))->create();
+        $this->call(TagsSeeder::class);
+
+        User::factory(10)->has(Employer::factory(1)->has(Job::factory(3)))->create();
+
+        $jobs = Job::all();
+        $tags = Tag::all();
+
+        foreach ($jobs as $job) {
+            $randomTags = fake()->randomElements($tags, 3);
+            foreach ($randomTags as $tag) {
+                $job->tags()->attach($tag);
+            }
+        }
     }
 }
