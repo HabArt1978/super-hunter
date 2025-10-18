@@ -14,8 +14,6 @@ class WelcomeController extends Controller
     {
         $jobs = Job::with(['employer', 'tags'])->cursorPaginate(3);
 
-        //        dd($fakeTopJobs);
-
         return view('welcome', compact('jobs'));
     }
 
