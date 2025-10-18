@@ -25,7 +25,10 @@
                             <li>
                                 <x-ui.link-button
                                     variant="outlined"
-                                    size='medium'>
+                                    size='medium'
+                                    target
+                                    href="https://ru.wikipedia.org/wiki/{{$tag->name}}"
+                                >
                                     {{$tag->name}}
                                 </x-ui.link-button>
                             </li>
@@ -33,6 +36,37 @@
                     </x-slot:tag_listings>
                 </x-job.card-show>
             </div>
+
+            <x-ui.forms.buttonContainer>
+                <div class='flex gap-4'>
+                    <x-ui.link-button
+                        href="/jobs/{{$job->id}}/edit">редактировать
+                    </x-ui.link-button>
+
+                    <x-ui.link-button
+                        href="{{ url()->previous() }}"
+                        color="green">назад
+                    </x-ui.link-button>
+                </div>
+
+                <form
+                    id='job-delete'
+                    action="/jobs/{{$job->id}}"
+                    method='POST'
+                    class='hidden'>
+                    @csrf
+                    @method('DELETE')
+                </form>
+
+                <x-ui.forms.button
+                    href='#'
+                    color="red"
+                    form="job-delete"
+                >
+                    удалить
+                </x-ui.forms.button>
+            </x-ui.forms.buttonContainer>
+
         </x-slot:section_content>
 
     </x-section-container>

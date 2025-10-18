@@ -86,15 +86,41 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        //
+        $categories = Category::with(['tags'])->get();
+        $job->loadMissing(['tags']);
+
+        return view('jobs.edit', compact('job', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
+     * @throws Throwable
      */
     public function update(Request $request, Job $job)
     {
-        //
+        DB::transaction(function() use ($request, $job) {
+            $validatedAttributes = $request->validate([
+                'job_title' => 'required|string|min:3|max:100',
+                'salary' => 'required|string|min:4|max:10',
+                'schedule' => 'required|string|max:255',
+                'location' => 'required|string|max:255',
+                'url' => 'required|url|max:500',
+                'tags' => 'sometimes|array|min:1|max:3',
+                'tags.*' => 'integer|exists:tags,id',
+            ]);
+
+            $job->update([
+                'title' => $request->job_title,
+                ...$validatedAttributes, //TODO
+                'employer_id' => 1
+            ]);
+
+            if ($tags = $validatedAttributes['tags'] ?? null) {
+                $job->tags()->sync($tags);
+            }
+        });
+
+        return redirect("/jobs/{$job->id}");
     }
 
     /**
@@ -102,7 +128,10 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        $job->tags()->detach();
+        $job->delete();
+
+        return redirect('/jobs');
     }
 }
 

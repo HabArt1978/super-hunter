@@ -1,10 +1,14 @@
+@props(['color' => 'blue'])
+
 @php
-    $classes = Arr::toCssClasses([
-        'uppercase rounded-lg my-8 transition-color duration-300 py-2 px-3 bg-blue-800 hover:bg-blue-800/60'
-    ])
+    $buttonClasses = Arr::toCssClasses([
+        'uppercase rounded-lg transition-color duration-300 py-2 px-3',
+        'bg-blue-800 hover:bg-blue-800/60' => $color === 'blue',
+        'bg-red-800 hover:bg-red-800/60' => $color === 'red'
+        ])
 @endphp
 
-<button {{$attributes->merge(['class' => $classes])}}>
+<button {{$attributes->merge(['class' => $buttonClasses])}}>
     {{$slot}}
 </button>
 

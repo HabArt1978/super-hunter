@@ -18,7 +18,9 @@
                 @foreach($group['options'] as $option)
                     <option
                         value="{{ $option['value'] }}"
-                        class='py-1'>
+                        class='py-1'
+                        @selected($option['selected'] ?? false)
+                    >
                         {{ $option['name'] }}
                     </option>
                 @endforeach

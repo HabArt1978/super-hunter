@@ -1,23 +1,24 @@
 <x-layout>
     <x-section-container type="page">
 
-        <x-slot:section_header>Обновление вакансии</x-slot:section_header>
+        <x-slot:section_header>Редактирование вакансии</x-slot:section_header>
 
         <x-slot:section_content>
 
             <x-ui.forms.card>
                 <x-slot:formTitle>
-                    Обновить данные вакансии
+                    Редактировать данные вакансии
                 </x-slot:formTitle>
 
                 <x-slot:formDescription>
-                    Измените данные в вашей вакансии.
+                    Измените, по необходимости, данные в вашей вакансии.
                 </x-slot:formDescription>
 
                 <x-ui.forms.form
                     method="POST"
-                    action="/jobs">
+                    action="/jobs/{{$job->id}}">
                     @csrf
+                    @method('PATCH')
 
                     <x-ui.forms.container>
                         <x-ui.forms.field>
@@ -32,7 +33,7 @@
                                 id="job_title"
                                 name="job_title"
                                 type="text"
-                                value="{{old('job_title')}}"
+                                value="{{$job->title}}"
                                 placeholder="Гладиатор"
                                 required
                                 @class(['border-red-500' => $errors->has('job_title')]) />
@@ -55,7 +56,7 @@
                                 id="salary"
                                 name="salary"
                                 type="text"
-                                value="{{old('salary')}}"
+                                value="{{$job->salary}}"
                                 placeholder="50 000 ₽"
                                 required
                                 @class(['border-red-500' => $errors->has('salary')])
@@ -76,7 +77,7 @@
                                 id="schedule"
                                 name="schedule"
                                 type="text"
-                                value="{{old('schedule')}}"
+                                value="{{$job->schedule}}"
                                 placeholder="5/2, смена 8 часов"
                                 required
                                 @class(['border-red-500' => $errors->has('schedule')])
@@ -97,7 +98,7 @@
                                 id="location"
                                 name="location"
                                 type="text"
-                                value="{{old('location')}}"
+                                value="{{$job->location}}"
                                 placeholder="г.Саранск ул.Рабочая д.37"
                                 required
                                 @class(['border-red-500' => $errors->has('location')])
@@ -118,7 +119,7 @@
                                 id="url"
                                 name="url"
                                 type="url"
-                                value="{{old('url')}}"
+                                value="{{$job->url}}"
                                 placeholder="https://www.example.com"
                                 required
                                 @class(['border-red-500' => $errors->has('url')])
@@ -135,16 +136,22 @@
                             </x-ui.forms.label>
 
                             @php
+                                $jobTagsIds = $job->tags->pluck('id');
                                 $categoriesSelectItemGroups = $categories->map(fn($c) => [
                                     'name' => $c->name,
-                                    'options' => $c->tags->map(fn($t) => ['value' => $t->id, 'name' => $t->name])
+                                    'options' => $c->tags->map(fn($t) => [
+                                        'value' => $t->id,
+                                        'name' => $t->name,
+                                        'selected' => $jobTagsIds->contains($t->id)
+                                    ])
                                 ])
                             @endphp
                             <x-ui.forms.select
                                 id="tags"
                                 name='tags[]'
                                 multiple
-                                :option-groups='$categoriesSelectItemGroups' />
+                                :option-groups='$categoriesSelectItemGroups'
+                            />
 
                             @error('tags')
                             <x-ui.forms.error>{{$message}}</x-ui.forms.error>
@@ -152,11 +159,11 @@
                         </x-ui.forms.field>
 
                         <x-ui.forms.buttonContainer>
-                            <x-ui.forms.button>Создать</x-ui.forms.button>
+                            <x-ui.forms.button>Обновить</x-ui.forms.button>
 
                             <x-ui.link-button
-                                href="/"
-                                color="red">отменить
+                                href="{{url()->previous()}}"
+                                color="green">отменить
                             </x-ui.link-button>
                         </x-ui.forms.buttonContainer>
 

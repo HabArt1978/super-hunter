@@ -18,13 +18,10 @@ Route::get('/company', function() {
     return view('company', ['header_title' => 'Страница Компании']);
 });
 
-Route::get('/jobs', [
-    JobController::class, 'index',
-]);
-Route::get('/jobs/create', [
-    JobController::class, 'create',
-]);
-Route::get('/jobs/{job}', [
-    JobController::class, 'show',
-]);
+Route::get('/jobs', [JobController::class, 'index']);
+Route::get('/jobs/create', [JobController::class, 'create']);
+Route::get('/jobs/{job}', [JobController::class, 'show']);
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
 Route::post('/jobs', [JobController::class, 'store']);
+Route::patch('/jobs/{job}', [JobController::class, 'update']);
+Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
