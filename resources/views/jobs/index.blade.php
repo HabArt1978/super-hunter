@@ -5,6 +5,30 @@
         <x-slot:section_header>Вакансии</x-slot:section_header>
 
         <x-slot:section_content>
+            @session('job-created')
+            <div class='flex items-center mt-8 p-4 rounded-2xl bg-teal-900'>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="mr-2 size-6">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+
+                @php
+                    $jobLink = "/jobs/{$value['id']}";
+                    $jobTitle = $value['title']
+                @endphp
+                Вакансия создана: <a
+                    class='pl-1 text-orange-400 hover:underline'
+                    href='{{$jobLink}}'>{{$jobTitle}}</a>
+            </div>
+            @endsession
 
             <div class="my-10">
                 {{$jobs->links()}}

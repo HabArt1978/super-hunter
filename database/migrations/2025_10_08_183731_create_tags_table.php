@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Job;
 use App\Models\Tag;
 use Illuminate\Database\Migrations\Migration;
@@ -17,7 +16,6 @@ return new class extends Migration
     {
         Schema::create('tags', function(Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Category::class);
             $table->string('name');
             $table->timestamps();
         });

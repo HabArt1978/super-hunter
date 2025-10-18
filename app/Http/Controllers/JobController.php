@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,23 +28,36 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        DB::transaction(function() use ($request) {
+        $job = DB::transaction(function() use ($request) {
             $validatedAttributes = $request->validate([
                 'job_title' => 'required|string|min:3|max:100',
                 'salary' => 'required|string|min:4|max:10',
                 'schedule' => 'required|string|max:255',
                 'location' => 'required|string|max:255',
                 'url' => 'required|url|max:500',
+                'tags' => 'sometimes|array|min:1|max:3',
+                'tags.*' => 'integer|exists:tags,id',
             ]);
 
-            Job::create([
+            $job = Job::create([
                 'title' => $request->job_title,
                 ...$validatedAttributes,
                 'employer_id' => 1
             ]);
+
+            if ($tags = $validatedAttributes['tags'] ?? null) {
+                $job->tags()->attach($tags);
+            }
+
+            return $job;
         });
 
-        return redirect('/jobs');
+        return redirect('/jobs')->with([
+            'job-created' => [
+                'id' => $job->id,
+                'title' => $job->title
+            ]
+        ]);
     }
 
     /**
@@ -51,7 +65,9 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('jobs.create');
+        $categories = Category::with(['tags'])->get();
+
+        return view('jobs.create', compact('categories'));
     }
 
     /**

@@ -17,7 +17,8 @@ class Tag extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'category_id'
     ];
 
     public function jobs(): BelongsToMany

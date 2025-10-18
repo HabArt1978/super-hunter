@@ -130,10 +130,25 @@
                         </x-ui.forms.field>
 
                         <x-ui.forms.field>
-                            <x-ui.forms.label
-                                for="job-category"
-                            >Категории вакансии
+                            <x-ui.forms.label for="tags">
+                                Категории вакансии
                             </x-ui.forms.label>
+
+                            @php
+                                $categoriesSelectItemGroups = $categories->map(fn($c) => [
+                                    'name' => $c->name,
+                                    'options' => $c->tags->map(fn($t) => ['value' => $t->id, 'name' => $t->name])
+                                ])
+                            @endphp
+                            <x-ui.forms.select
+                                id="tags"
+                                name='tags[]'
+                                multiple
+                                :option-groups='$categoriesSelectItemGroups' />
+
+                            @error('tags')
+                            <x-ui.forms.error>{{$message}}</x-ui.forms.error>
+                            @enderror
                         </x-ui.forms.field>
 
                         <x-ui.forms.buttonContainer>
