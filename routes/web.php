@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -45,11 +47,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/jobs', [JobController::class, 'index']);
     Route::get('/jobs/create', [JobController::class, 'create']);
-    Route::get('/jobs/{job}', [JobController::class, 'show']);
+    Route::get('/jobs/{job}', [JobController::class, 'show'])->name('job.show');
     Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
     Route::post('/jobs', [JobController::class, 'store']);
     Route::patch('/jobs/{job}', [JobController::class, 'update']);
     Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
+
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
+
+    Route::put('/users/{user}/employer', [EmployerController::class, 'createOrUpdate']);
 });
 
 require __DIR__.'/auth.php';

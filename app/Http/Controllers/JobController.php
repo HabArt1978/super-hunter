@@ -28,7 +28,15 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        $job = DB::transaction(function() use ($request) {
+        $user = $request->user();
+
+        if (!$user->employer) {
+            return back()
+                ->withErrors(['employer' => 'Перед созданием вакансии необходимо добавить работодателя']);
+        }
+
+        $job = DB::transaction(function() use ($request, $user) {
+
             $validatedAttributes = $request->validate([
                 'job_title' => 'required|string|min:3|max:100',
                 'salary' => 'required|string|min:4|max:10',
@@ -42,7 +50,7 @@ class JobController extends Controller
             $job = Job::create([
                 'title' => $request->job_title,
                 ...$validatedAttributes,
-                'employer_id' => 1
+                'employer_id' => $user->employer->id
             ]);
 
             if ($tags = $validatedAttributes['tags'] ?? null) {

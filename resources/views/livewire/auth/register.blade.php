@@ -33,7 +33,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         Session::regenerate();
 
-        $this->redirectIntended(route('welcome', absolute: false), navigate: true);
+        $this->redirectIntended(route('home', absolute: false), navigate: true);
     }
 }; ?>
 
